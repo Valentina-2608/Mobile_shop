@@ -1,0 +1,32 @@
+.main{width:100%;
+height:1000px;
+background-color:red;
+display:flex;}
+
+
+header{width:1280px;
+height:80px;
+background-color:#D7D7D7;
+display:flex;
+justify-content:space-around;
+align-items:center;
+}
+
+.logo{
+font-size:40px;
+font-weight:bold;
+color:#402E7A;
+display:flex;
+align-items:center;
+}
+
+.languages{border:none;
+border-radius:5px;}
+
+.phone img{margin-right:5px;}
+
+.basket{
+display:flex;
+align-items:center;}
+
+.basket img{margin-left:15px;}
