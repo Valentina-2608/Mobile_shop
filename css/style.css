@@ -180,7 +180,7 @@ left:0px;}
 
 /* Mobile phones */
 
-.products{width:100%;
+.products_phone{width:100%;
 height:1200px;
 position:absolute;
 top:210px;
@@ -207,7 +207,7 @@ flex-wrap:wrap;
 margin-top:30px;
 }
 
-.product img{width:70%;
+.products_phone img{width:70%;
 height:50%;
 margin-top:30px;}
 
@@ -233,3 +233,32 @@ border:none;
 padding:5px;
 text-align:center;
 cursor:pointer;}
+
+
+
+
+
+
+
+/* Laptops */
+
+.products_laptop{width:100%;
+height:1200px;
+position:absolute;
+top:210px;
+}
+
+
+.product{width:25%;
+height:480px;
+box-shadow:5px 5px 10px gray;
+margin-left:20px;
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.products_laptop img{width:70%;
+height:37%;
+margin-top:30px;}
