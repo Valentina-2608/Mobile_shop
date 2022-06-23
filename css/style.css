@@ -283,3 +283,17 @@ top:210px;
 .products_smart img{width:70%;
 height:60%;
 margin-top:30px;}
+
+
+
+/*Accesories  */
+
+.products_accesorie{width:100%;
+height:1200px;
+position:absolute;
+top:210px;
+}
+
+.products_accesorie img{width:70%;
+height:55%;
+margin-top:30px;}
