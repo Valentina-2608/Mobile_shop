@@ -7,30 +7,31 @@ currency.addEventListener('change',change_currency);
 /* Change currency*/
 
 function change_currency(event){
-let products_price=document.querySelectorAll('.product_price');
-for (let elem of products_price){
-
+let prices=document.querySelectorAll('.price');
+let currencys=document.querySelectorAll('.currency');
+for(let elem of prices){
+for(let elem1 of currencys){
 	if (event.target.value==='UAH'){
-		let price=elem.innerHTML;
-		/* find the number part of product_price.innerHTML */
-		let price1=price.substring(0,price.length-1);
-		/*convert currency from Euro to UAH*/
-		let price_UAH=+price1*37
-		elem.innerHTML=price_UAH + ' UAH';
+		let price_b=elem.innerHTML;
+		let currency_UAH=elem1.innerHTML;
+		elem1.innerHTML='UAH';
+		let price_UAH=+price_b*37;
+		elem.innerHTML=price_UAH;
 		console.log(elem.innerHTML);
 	} 
 	if (event.target.value==='Euro'){
 		let price_UAH=elem.innerHTML;
-		/* find the number part of element product_price.innerHTML */
-		let price2=price_UAH.substring(0,price_UAH.length-3);
-		/*convert currency from UAH to "Euro*/
-		let price_Euro=+price2/37;
-		elem.innerHTML=price_Euro + ' Є';
+		let currency_UAH=elem1.innerHTML;
+		elem1.innerHTML='Є';
+		let price_Euro=+price_UAH/37;
+		elem.innerHTML=price_Euro;
 		console.log(elem.innerHTML);
-		
-	}
+	} 
 }
-};
+
+}
+
+}
 			
 
 
