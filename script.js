@@ -31,4 +31,12 @@ for (let elem of products_price){
 	}
 }
 };
+
+
+
+
+
+
+
+
 	
