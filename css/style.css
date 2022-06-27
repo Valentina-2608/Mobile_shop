@@ -26,6 +26,12 @@ border-radius:5px;}
 
 .phone img{margin-right:5px;}
 
+
+.e-mail img{
+width:3%;
+	
+margin-right:5px;}
+
 .basket{
 display:flex;
 align-items:center;}
@@ -73,7 +79,8 @@ text-shadow:3px 3px 5px #D7D7D7;
 }
 
 #currency{border:none;
-font-size:18px;}
+font-size:18px;
+box-shadow:5px 5px 10px gray;}
 
 
 /*gallery*/
