@@ -37,6 +37,7 @@ display:flex;
 align-items:center;}
 
 .basket img{margin-left:15px;}
+.basket:hover{cursor:pointer;}
 
 
 /* menu */
@@ -316,10 +317,27 @@ margin-top:30px;}
 height:40%;
 box-shadow:5px 5px 10px gray;
 position:absolute;
+display:none;
 background-color:#EDE6D9;
 z-index:10;
-top:35%;
-left:20%;
+top:15%;
+left:34%;
+
+}
+
+.modal_show{
+animation: zoomIn 0.3s ease-in-out forwards; 	
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 
