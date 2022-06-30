@@ -104,4 +104,20 @@ basket_modal.removeChild(info_product);
 }
 
 
+/* Show and hide modal_basket */
+
+
+let basket_modal = document.getElementById('basket_modal');
+let basket = document.querySelector('.basket');
+basket.addEventListener('click', openBasket);
 	
+function openBasket(){
+     if(basket_modal.style.display ==='none'){
+            basket_modal.style.display = "block";
+			basket_modal.classList.add('modal_show');
+      }else{
+            basket_modal.style.display = "none";
+			
+
+      }
+}
