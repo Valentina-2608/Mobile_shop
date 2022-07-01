@@ -40,6 +40,24 @@ for(let i=0; i< add_btns.length; i++){
 add_btns[i].addEventListener('click',addToBasket);
 
 function addToBasket(){
+
+/* Add count of items to basket */
+let count_items=document.querySelector('.count_items');
+count_items.innerHTML=(+count_items.innerHTML)+1;
+let basket_count=document.querySelector('.basket_count');
+basket_count.innerHTML=count_items.innerHTML;
+let text_items=document.querySelector('.text_items');
+if (count_items.innerHTML==0 && count_items.innerHTML==1){
+text_items.innerHTML=' '+'item';
+}
+else if (count_items.innerHTML>1){
+basket_count.innerHTML=count_items.innerHTML+' ';
+text_items.innerHTML='items';
+	
+}
+
+
+/* Add new item */
 let add_btn=event.target;
 let add_btn_parent=add_btn.parentElement;
 let add_btn_grandparent=add_btn_parent.parentElement;
