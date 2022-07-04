@@ -359,30 +359,48 @@ justify-content:space-around;
 align-items:center;
 background-color:#EDE6D9;}
 
-.itemCaption{width:30%;
+.itemCaption{width:25%;
 text-align:center;
 font-weight:bold;
 color:darkred;}
 
-.itemPrice{width:25%;
+.itemPrice{width:20%;
 text-align:center;}
 
 .itemPrice span{font-weight:bold;}
 
-.itemQuantity{width:30%;}
+.itemQuantity{width:20%;}
 
-.itemImage{width:20%;
+.itemTotalPrice{width:25%;
+font-weight:bold;}
+
+.itemImage{width:15%;
 text-align:center;}
 .itemImage img{width:50%;}
 
 .itemRemove{width:15%;}
 
+input[type="number"]{
+	width:30px;
+}
 
-#remove_btn{background-color:darkred;
+.remove_btn{background-color:darkred;
 color:white;
 border-radius:10px;
 border:none;
 padding:8px;
+cursor:pointer;
 }
 
-#remove_btn:hover{cursor:pointer;}
+.remove_btn:hover{cursor:pointer;}
+
+
+
+#total{width:97,5%;
+height:30px;
+background-color:#6B8A6F;
+padding:10px;
+font-size:20px;
+font-weight:bold;
+color:white;
+}
