@@ -41,22 +41,6 @@ add_btns[i].addEventListener('click',addToBasket);
 
 function addToBasket(){
 
-/* Add count of items to basket */
-let count_items=document.querySelector('.count_items');
-count_items.innerHTML=(+count_items.innerHTML)+1;
-let basket_count=document.querySelector('.basket_count');
-basket_count.innerHTML=count_items.innerHTML;
-let text_items=document.querySelector('.text_items');
-if (count_items.innerHTML==0 && count_items.innerHTML==1){
-text_items.innerHTML=' '+'item';
-}
-else if (count_items.innerHTML>1){
-basket_count.innerHTML=count_items.innerHTML+' ';
-text_items.innerHTML='items';
-	
-}
-
-
 /* Add new item */
 let add_btn=event.target;
 let add_btn_parent=add_btn.parentElement;
@@ -70,56 +54,95 @@ let info_product=document.createElement('div');
 info_product.classList.add('info_product');
 info_product.innerHTML=`<div class="itemCaption">${itemCaption}</div>
 <div class="itemImage"><img src=${itemImage}></div>
-<div class="itemQuantity">Quantity:
-<input type="button" id="btn_minus" value="-">
-<input type="text" id="quantity" value="1" size="1">
-<input type="button" id="btn_plus" value="+">
-
-</div>
 <div class="itemPrice"><span>Price:</span><span class="numberPrice"> ${itemPrice}</span></div>
+<div class="itemQuantity">Quantity:
+<input type="number" class="number" value="1">
+</div>
 
-<div class="itemRemove"><input type="button" id="remove_btn" value="Remove"></div>
+<div class="itemTotalPrice"><span>Total Price:</span><span class="numberTotalPrice">${itemPrice}</span></div>
+
+<div class="itemRemove"><input type="button" class="remove_btn" value="Remove"></div>
 `
+
+
 basket_modal.appendChild(info_product);
 
-/* Change value of quantity and change Price */
+/* Add count of items in basket */
+let info_products_length=document.querySelectorAll('.info_product').length;
 
-let numberPrice=document.querySelector('.numberPrice');
-let price=numberPrice.innerHTML;
-let price1=price.substring(0,price.length-1);
+let count_items=document.querySelector('.count_items');
+count_items.innerHTML=info_products_length;
 
-let btn_plus=document.getElementById('btn_plus');
-btn_plus.addEventListener('click',function(){
-let quantity=document.getElementById('quantity');
-quantity.value=+quantity.value+1;
-let price_total=+price1*(+quantity.value);
-numberPrice.innerHTML=price_total + 'Є';
-});
-
-
-let btn_minus=document.getElementById('btn_minus');
-btn_minus.addEventListener('click',function(){
-let quantity=document.getElementById('quantity');
-if (quantity.value >=2){
-quantity.value=+quantity.value-1;
-let price_total=+price1*(+quantity.value);
-numberPrice.innerHTML=price_total + 'Є';
+let basket_count=document.querySelector('.basket_count');
+basket_count.innerHTML=count_items.innerHTML;
+let text_items=document.querySelector('.text_items');
+if (count_items.innerHTML==0 || count_items.innerHTML==1){
+text_items.innerHTML=' '+'item';
 }
-});
+else if (count_items.innerHTML>1){
+basket_count.innerHTML=count_items.innerHTML+' ';
+text_items.innerHTML='items';
+}	
 
 
+/* Update info_cart, count Total Price */
 
+let quantity_fields=document.querySelectorAll('.number');
+for (let i=0; i< quantity_fields.length; i++){
+quantity_fields[i].addEventListener('change', updateTotalPrice);
+
+function updateTotalPrice(event){
+number=event.target;
+number_parent=number.parentElement.parentElement;
+price_field=number_parent.getElementsByClassName('numberPrice')[0].innerHTML;
+total_price_field=number_parent.getElementsByClassName('numberTotalPrice')[0];
+price_field_number=price_field.substring(0,price_field.length-1);
+total_price_field.innerHTML=+price_field_number*number.value+'Є';
+
+if (isNaN(number.value) || number.value <= 0){
+	number.value = 1;
+}
+}
+}
 
 
 
 /* Remove item */
-let remove_btn=document.getElementById('remove_btn');
-remove_btn.addEventListener('click',function(){
-basket_modal.removeChild(info_product);
 
-});
+
+let remove_btns=document.querySelectorAll('.remove_btn');
+for(let i=0; i< remove_btns.length; i++){
+remove_btns[i].addEventListener('click',removeItem);
+}
+
+function removeItem(){
+remove_btn=event.target;
+remove_btn.grandparent=remove_btn.parentElement.parentElement;
+remove_btn.grandparent.remove();
+let info_products_length=document.querySelectorAll('.info_product').length;
+
+
+/* Change count of items in basket */
+count_items.innerHTML=info_products_length;
+basket_count.innerHTML=count_items.innerHTML;
+
+if (count_items.innerHTML==0 ||  count_items.innerHTML==1){
+text_items.innerHTML=' '+'item';
+}
+else if (count_items.innerHTML>1){
+basket_count.innerHTML=count_items.innerHTML+' ';
+text_items.innerHTML='items';
+}
+
+}
+
+
+
+
+
 }
 }
+
 
 
 /* Show and hide modal_basket */
@@ -135,7 +158,5 @@ function openBasket(){
 			basket_modal.classList.add('modal_show');
       }else{
             basket_modal.style.display = "none";
-			
-
       }
 }
