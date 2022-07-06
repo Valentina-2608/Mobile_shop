@@ -38,8 +38,9 @@ for (let elem of products_price){
 let add_btns=document.querySelectorAll('.add_btn');
 for(let i=0; i< add_btns.length; i++){
 add_btns[i].addEventListener('click',addToBasket);
+}
 
-function addToBasket(){
+function addToBasket(event){
 
 /* Add new item */
 let add_btn=event.target;
@@ -67,6 +68,8 @@ info_product.innerHTML=`<div class="itemCaption">${itemCaption}</div>
 
 basket_modal.appendChild(info_product);
 
+
+
 /* Add count of items in basket */
 let info_products_length=document.querySelectorAll('.info_product').length;
 
@@ -85,12 +88,14 @@ text_items.innerHTML='items';
 }	
 
 
+
 /* Update info_cart, count Total Price */
 
 let quantity_fields=document.querySelectorAll('.number');
 for (let i=0; i< quantity_fields.length; i++){
 quantity_fields[i].addEventListener('change', updateTotalPrice);
-
+grandTotal();
+}
 function updateTotalPrice(event){
 number=event.target;
 number_parent=number.parentElement.parentElement;
@@ -98,11 +103,28 @@ price_field=number_parent.getElementsByClassName('numberPrice')[0].innerHTML;
 total_price_field=number_parent.getElementsByClassName('numberTotalPrice')[0];
 price_field_number=price_field.substring(0,price_field.length-1);
 total_price_field.innerHTML=+price_field_number*number.value+'Є';
-
+grandTotal();
 if (isNaN(number.value) || number.value <= 0){
 	number.value = 1;
 }
 }
+
+
+
+/* Addition price to basket */
+function grandTotal(){
+let grand_total_price=document.querySelectorAll('.total_price')[0];
+
+let total_price_fields=document.querySelectorAll('.numberTotalPrice');
+let suma=0;
+for(let i=0; i< total_price_fields.length; i++){
+	let total_price_field_string=total_price_fields[i].innerHTML;
+	console.log(total_price_field_string);
+	price_field_number=+total_price_field_string.substring(0,total_price_field_string.length-1);	
+	console.log(price_field_number);
+	suma+=price_field_number;
+}
+grand_total_price.innerHTML=suma + 'Є';
 }
 
 
@@ -115,12 +137,12 @@ for(let i=0; i< remove_btns.length; i++){
 remove_btns[i].addEventListener('click',removeItem);
 }
 
-function removeItem(){
+function removeItem(event){
 remove_btn=event.target;
 remove_btn.grandparent=remove_btn.parentElement.parentElement;
 remove_btn.grandparent.remove();
 let info_products_length=document.querySelectorAll('.info_product').length;
-
+grandTotal();
 
 /* Change count of items in basket */
 count_items.innerHTML=info_products_length;
@@ -133,22 +155,16 @@ else if (count_items.innerHTML>1){
 basket_count.innerHTML=count_items.innerHTML+' ';
 text_items.innerHTML='items';
 }
+}
 
 }
 
 
-
-
-
-}
-}
 
 
 
 /* Show and hide modal_basket */
 
-
-let basket_modal = document.getElementById('basket_modal');
 let basket = document.querySelector('.basket');
 basket.addEventListener('click', openBasket);
 	
