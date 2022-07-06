@@ -101,9 +101,16 @@ number=event.target;
 number_parent=number.parentElement.parentElement;
 price_field=number_parent.getElementsByClassName('numberPrice')[0].innerHTML;
 total_price_field=number_parent.getElementsByClassName('numberTotalPrice')[0];
+if (currency.value==='Euro'){ 
 price_field_number=price_field.substring(0,price_field.length-1);
 total_price_field.innerHTML=+price_field_number*number.value+'Є';
-grandTotal();
+grandTotal();}
+else if (currency.value==='UAH'){
+price_field_number=price_field.substring(0,price_field.length-3);
+total_price_field.innerHTML=+price_field_number*number.value+'UAH';
+grandTotal();	
+}
+
 if (isNaN(number.value) || number.value <= 0){
 	number.value = 1;
 }
@@ -117,17 +124,20 @@ let grand_total_price=document.querySelectorAll('.total_price')[0];
 
 let total_price_fields=document.querySelectorAll('.numberTotalPrice');
 let suma=0;
+let basket_currency='';
 for(let i=0; i< total_price_fields.length; i++){
 	let total_price_field_string=total_price_fields[i].innerHTML;
-	console.log(total_price_field_string);
-	price_field_number=+total_price_field_string.substring(0,total_price_field_string.length-1);	
-	console.log(price_field_number);
+	if (currency.value==='Euro'){ 
+	price_field_number=+total_price_field_string.substring(0,total_price_field_string.length-1);
+	basket_currency='Є';
+	} else if (currency.value==='UAH'){ 
+	price_field_number=+total_price_field_string.substring(0,total_price_field_string.length-3);
+	basket_currency='UAH';
+	}
 	suma+=price_field_number;
 }
-grand_total_price.innerHTML=suma + 'Є';
+grand_total_price.innerHTML=suma + basket_currency;
 }
-
-
 
 /* Remove item */
 
